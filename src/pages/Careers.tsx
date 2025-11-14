@@ -16,7 +16,7 @@ const Careers = () => {
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="mb-6">Career Outcomes</h1>
             <p className="text-xl text-muted-foreground">
-              Your path into the sports industry starts here
+              Your path into the sports industry starts
             </p>
           </div>
         </div>
