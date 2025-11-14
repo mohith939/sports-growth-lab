@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { BookOpen, Users, Briefcase, ArrowRight, Award, TrendingUp } from "lucide-react";
+import { BookOpen, Users, Briefcase, ArrowRight, Award, TrendingUp, Linkedin } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import heroImage from "@/assets/hero-main.jpg";
@@ -253,7 +253,12 @@ const Home = () => {
         </div>
 
         <div className="p-6 md:p-8 flex flex-col justify-center">
-          <h3 className="text-2xl font-bold mb-2">Sagar Rai</h3>
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="text-2xl font-bold">Sagar Rai</h3>
+            <a href="https://www.linkedin.com/in/sagar-rai-1252901a5/" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80">
+              <Linkedin className="w-6 h-6" />
+            </a>
+          </div>
           <p className="text-primary font-semibold mb-4">
             Founder & CEO, KIBI Sports
           </p>
@@ -267,7 +272,7 @@ const Home = () => {
 
           <Button asChild variant="outline" className="w-fit">
             <Link to="/mentors">
-              View All Mentors <ArrowRight className="ml-2 w-4 h-4" />
+              View Bio <ArrowRight className="ml-2 w-4 h-4" />
             </Link>
           </Button>
         </div>
@@ -287,7 +292,12 @@ const Home = () => {
           />
         </div>
         <div className="p-6 md:p-8 flex flex-col justify-center">
-          <h3 className="text-2xl font-bold mb-2 line-clamp-1">Saurabh Aggarwal</h3>
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="text-2xl font-bold line-clamp-1">Saurabh Aggarwal</h3>
+            <a href="https://www.linkedin.com/in/saurabh-aggarwal-86426723" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80">
+              <Linkedin className="w-6 h-6" />
+            </a>
+          </div>
           <p className="text-primary font-semibold mb-4">
             Co-Founder of Hyfit(Bengaluru)
           </p>
@@ -300,7 +310,7 @@ const Home = () => {
 
           <Button asChild variant="outline" className="w-fit">
             <Link to="/mentors">
-              View All Mentors <ArrowRight className="ml-2 w-4 h-4" />
+              View Bio <ArrowRight className="ml-2 w-4 h-4" />
             </Link>
           </Button>
         </div>
@@ -320,8 +330,12 @@ const Home = () => {
           />
         </div>
         <div className="p-6 md:p-8 flex flex-col justify-center">
-          <h3 className="text-2xl font-bold mb-2 line-clamp-1">Karan Bahadur</h3>
-
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="text-2xl font-bold line-clamp-1">Karan Bahadur</h3>
+            <a href="https://www.linkedin.com/in/karanbahadur-dshindia/" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80">
+              <Linkedin className="w-6 h-6" />
+            </a>
+          </div>
           <p className="text-primary font-semibold mb-4">
             Co-Founder & Head of Operations, Draper Startup House – India
           </p>
@@ -334,7 +348,7 @@ const Home = () => {
 
           <Button asChild variant="outline" className="w-fit">
             <Link to="/mentors">
-              View All Mentors <ArrowRight className="ml-2 w-4 h-4" />
+              View Bio <ArrowRight className="ml-2 w-4 h-4" />
             </Link>
           </Button>
         </div>
@@ -355,8 +369,12 @@ const Home = () => {
         </div>
 
         <div className="p-6 md:p-8 flex flex-col justify-center">
-          <h3 className="text-2xl font-bold mb-2 line-clamp-1">Amit Kumar Sahu</h3>
-
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="text-2xl font-bold line-clamp-1">Amit Kumar Sahu</h3>
+            <a href="https://www.linkedin.com/in/amit-kumar-sahu-1a1b1b1b1/" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80">
+              <Linkedin className="w-6 h-6" />
+            </a>
+          </div>
           <p className="text-primary font-semibold mb-4">
             Co-Founder, Finnoto Solutions Private Limited
           </p>
@@ -370,7 +388,7 @@ const Home = () => {
 
           <Button asChild variant="outline" className="w-fit">
             <Link to="/mentors">
-              View All Mentors <ArrowRight className="ml-2 w-4 h-4" />
+              View Bio <ArrowRight className="ml-2 w-4 h-4" />
             </Link>
           </Button>
         </div>
@@ -390,7 +408,12 @@ const Home = () => {
           />
         </div>
         <div className="p-6 md:p-8 flex flex-col justify-center">
-          <h3 className="text-2xl font-bold mb-2 line-clamp-1">Hussa K </h3>
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="text-2xl font-bold line-clamp-1">Hussa K</h3>
+            <a href="https://www.linkedin.com/in/hussak/" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80">
+              <Linkedin className="w-6 h-6" />
+            </a>
+          </div>
           <p className="text-primary font-semibold mb-4">
             Strategic Investor & Board Director in Global Sport
           </p>
@@ -405,7 +428,7 @@ const Home = () => {
 
           <Button asChild variant="outline" className="w-fit">
             <Link to="/mentors">
-              View All Mentors <ArrowRight className="ml-2 w-4 h-4" />
+              View Bio <ArrowRight className="ml-2 w-4 h-4" />
             </Link>
           </Button>
         </div>

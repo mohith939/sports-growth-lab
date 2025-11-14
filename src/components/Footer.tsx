@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Linkedin, Instagram, Twitter } from "lucide-react";
+import { Linkedin, Instagram } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -49,7 +49,7 @@ const Footer = () => {
             </p>
             <div className="flex gap-3">
               <a
-                href="https://www.linkedin.com"
+                href="https://www.linkedin.com/company/khelpreneurs/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 bg-background hover:bg-primary hover:text-primary-foreground rounded-lg transition-fast"
@@ -57,20 +57,12 @@ const Footer = () => {
                 <Linkedin size={20} />
               </a>
               <a
-                href="https://www.instagram.com"
+                href="https://www.instagram.com/khelpreneurs/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 bg-background hover:bg-primary hover:text-primary-foreground rounded-lg transition-fast"
               >
                 <Instagram size={20} />
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 bg-background hover:bg-primary hover:text-primary-foreground rounded-lg transition-fast"
-              >
-                <Twitter size={20} />
               </a>
             </div>
           </div>
@@ -119,7 +111,7 @@ const Footer = () => {
         {/* Bottom */}
         <div className="pt-8 border-t border-border">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
-            <p>© 2024 Khelpreneurs. All rights reserved.</p>
+            <p>© 2025 Khelpreneurs. All rights reserved.</p>
             <p className="text-center">
               In partnership with{" "}
               <span className="font-semibold text-foreground">KIBI Sports</span> and{" "}

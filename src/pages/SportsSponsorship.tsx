@@ -1,31 +1,177 @@
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { CheckCircle2, ArrowRight } from "lucide-react";
+import { CheckCircle2, Users, BookOpen, Award, Briefcase } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import PrimaryButton from "@/components/PrimaryButton";
+import SecondaryButton from "@/components/SecondaryButton";
+import StatCard from "@/components/StatCard";
+import SectionHeader from "@/components/SectionHeader";
+import CTASection from "@/components/CTASection";
 import sponsorshipHero from "@/assets/sponsorship-hero.jpg";
 import mentorImage from "@/assets/mentor-sagar.jpeg";
 
+// Types
+type WeekModule = {
+  range: string;
+  title: string;
+  bullets: string[];
+};
+
+type FAQItem = {
+  question: string;
+  answer: string;
+};
+
 const SportsSponsorship = () => {
   const [stickyVisible, setStickyVisible] = useState(false);
+  const [activeSection, setActiveSection] = useState("hero");
 
   // Show sticky CTA on scroll
-  useState(() => {
+  useEffect(() => {
     const handleScroll = () => {
       setStickyVisible(window.scrollY > 500);
+
+      // Update active section for navigation
+      const sections = ["hero", "why-now", "mentor", "curriculum", "internship", "outcomes", "who-should-join", "projects", "compare", "testimonials", "faq", "apply"];
+      const current = sections.find(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
+      });
+      if (current) setActiveSection(current);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  });
+  }, []);
+
+  // Analytics events
+  useEffect(() => {
+    // Fire view_cohort_page event
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'view_cohort_page', {
+        page_title: 'Sports Sponsorship Cohort',
+        page_location: window.location.href
+      });
+    }
+  }, []);
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  // Data
+  const modules: WeekModule[] = [
+    {
+      range: "Weeks 1–2",
+      title: "Foundations of Sports Sponsorship",
+      bullets: ["Sports sponsorship ecosystem overview", "Brand objectives & strategies", "KPI frameworks for measuring success"]
+    },
+    {
+      range: "Weeks 3–4",
+      title: "Athlete Sponsorships",
+      bullets: ["Individual athlete partnerships", "Contract structures", "Athlete branding & workflow management"]
+    },
+    {
+      range: "Weeks 5–6",
+      title: "Team & League Sponsorships",
+      bullets: ["Team partnerships", "League-level deals", "Venue branding & large-scale activations"]
+    },
+    {
+      range: "Weeks 7–8",
+      title: "Digital & CSR Models",
+      bullets: ["OTT & digital sponsorships", "CSR-linked partnerships", "Community activations & social impact"]
+    },
+    {
+      range: "Weeks 9–10",
+      title: "Advanced Pitching",
+      bullets: ["Storytelling techniques", "Deck creation", "Tailoring pitches to stakeholders"]
+    },
+    {
+      range: "Weeks 11–12",
+      title: "Negotiation & Closing",
+      bullets: ["Budgeting & pricing strategies", "ROI measurement tools", "Negotiation tactics & closing deals"]
+    },
+    {
+      range: "Weeks 13–14",
+      title: "Internship Onboarding",
+      bullets: ["Onboarding at KIBI Sports", "Working on live sponsorship projects", "Real deal execution"]
+    },
+    {
+      range: "Week 15",
+      title: "Industry Masterclass",
+      bullets: ["Special sessions with brand managers", "League executives insights", "Advanced industry knowledge"]
+    },
+    {
+      range: "Week 16",
+      title: "Capstone Presentation",
+      bullets: ["Present sponsorship pitch deck", "Panel review", "Portfolio-ready deliverable"]
+    }
+  ];
+
+  const faqs: FAQItem[] = [
+    {
+      question: "What is the time commitment?",
+      answer: "8 weeks of live sessions (2-3 hours per week) plus self-paced work, followed by 8 weeks of full-time internship. All sessions are recorded for flexibility."
+    },
+    {
+      question: "Who is this program for?",
+      answer: "Students, fresh graduates, freelancers, early professionals, athletes, creators, coaches, career switchers, agency/league staff. No prior experience required."
+    },
+    {
+      question: "What if I miss a live session?",
+      answer: "All live sessions are recorded and available for replay. You can catch up at your convenience without missing key content."
+    },
+    {
+      question: "Is the internship guaranteed?",
+      answer: "Yes, all participants who complete the live cohort phase are guaranteed a paid internship at KIBI Sports working on real sponsorship deals."
+    },
+    {
+      question: "What is the refund policy?",
+      answer: "Full refund within the first 2 weeks if the program isn't the right fit. Partial refund available up to week 4. No refunds after internship begins."
+    },
+    {
+      question: "Will I get a PPO?",
+      answer: "PPO eligibility based on internship performance. Top performers may receive Pre-Placement Offers from KIBI Sports or partner organizations."
+    }
+  ];
 
   return (
     <div className="min-h-screen">
       <Header />
 
+      {/* Anchor Navigation */}
+      <nav className="sticky top-0 z-30 bg-background/95 backdrop-blur-sm border-b border-border hidden md:block">
+        <div className="container mx-auto px-4 py-3">
+          <div className="flex justify-center gap-6 text-sm">
+            {[
+              { id: "curriculum", label: "Curriculum" },
+              { id: "outcomes", label: "Outcomes" },
+              { id: "faq", label: "FAQs" },
+              { id: "apply", label: "Apply" }
+            ].map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className={`hover:text-primary transition-colors ${
+                  activeSection === item.id ? "text-primary font-semibold" : "text-muted-foreground"
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      </nav>
+
       {/* Hero */}
-      <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden">
+      <section id="hero" className="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden">
         <div className="absolute inset-0 -z-10">
           <img
             src={sponsorshipHero}
@@ -36,43 +182,89 @@ const SportsSponsorship = () => {
         </div>
 
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="inline-block px-4 py-2 bg-accent text-accent-foreground text-sm font-bold rounded-full mb-6">
-              NOW ENROLLING
-            </div>
-            <h1 className="mb-6">The Art & Science of Sports Sponsorship</h1>
-            <p className="text-xl text-muted-foreground mb-8">
-              Hands-on cohort to master pitching, negotiating, and executing sponsorship deals
-            </p>
+          <div className="max-w-6xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <div className="inline-block px-4 py-2 bg-accent text-accent-foreground text-sm font-bold rounded-full mb-6">
+                  Cohort 01 · Seats: 50 · Applications Open
+                </div>
+                <h1 className="mb-6">Become a Sports Sponsorship Professional in 16 Weeks</h1>
+                <p className="text-xl text-muted-foreground mb-8">
+                  Live cohort + paid internship with KIBI Sports. Learn to pitch, price, and close real sponsorship deals.
+                </p>
 
-            {/* Quick Facts Row */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
-              {[
-                { label: "Duration", value: "16 weeks" },
-                { label: "Format", value: "Live + Internship" },
-                { label: "Stipend", value: "₹10,000/month" },
-                { label: "Fee", value: "₹40,000" },
-                { label: "Seats", value: "50" },
-                { label: "Next Batch", value: "TBA" },
-              ].map((fact) => (
-                <Card key={fact.label} className="shadow-soft border-none">
-                  <CardContent className="p-4 text-center">
-                    <div className="text-sm text-muted-foreground mb-1">{fact.label}</div>
-                    <div className="font-bold">{fact.value}</div>
+                <div className="space-y-3 mb-8">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-primary" />
+                    <span>8 weeks live + 8 weeks paid internship</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-primary" />
+                    <span>₹10,000/month stipend during internship</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-primary" />
+                    <span>Mentor: Sagar Rai, Founder & CEO – KIBI Sports</span>
+                  </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button
+                    asChild
+                    size="lg"
+                    className="bg-accent hover:bg-accent-hover shadow-accent text-lg px-8"
+                    onClick={() => {
+                      if (typeof window !== 'undefined' && window.gtag) {
+                        window.gtag('event', 'click_apply_now', { source: 'hero_primary' });
+                      }
+                    }}
+                  >
+                    <a href="https://payments.cashfree.com/forms/khelpreneurscohort1" target="_blank" rel="noopener noreferrer">
+                      Apply Now <ArrowRight className="ml-2 w-5 h-5" />
+                    </a>
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="text-lg px-8"
+                    onClick={() => {
+                      if (typeof window !== 'undefined' && window.gtag) {
+                        window.gtag('event', 'click_download_brochure', { source: 'hero_secondary' });
+                      }
+                    }}
+                  >
+                    <Download className="mr-2 w-5 h-5" />
+                    Download Brochure
+                  </Button>
+                </div>
+              </div>
+
+              <div className="lg:text-right">
+                <Card className="shadow-strong border-primary/20 inline-block">
+                  <CardContent className="p-6">
+                    <h3 className="font-bold mb-4">Program Quick Facts</h3>
+                    <div className="space-y-3 text-sm">
+                      <div className="flex justify-between">
+                        <span className="text-muted-foreground">Duration:</span>
+                        <span className="font-semibold">16 weeks</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-muted-foreground">Format:</span>
+                        <span className="font-semibold">Live + Internship</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-muted-foreground">Fee:</span>
+                        <span className="font-semibold">₹40,000</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-muted-foreground">Stipend:</span>
+                        <span className="font-semibold">₹10,000/month</span>
+                      </div>
+                    </div>
                   </CardContent>
                 </Card>
-              ))}
+              </div>
             </div>
-
-            <Button
-              asChild
-              size="lg"
-              className="bg-accent hover:bg-accent-hover shadow-accent text-lg px-8 py-6"
-            >
-              <a href="https://payments.cashfree.com/forms/khelpreneurscohort1" target="_blank" rel="noopener noreferrer">
-                Apply Now <ArrowRight className="ml-2 w-5 h-5" />
-              </a>
-            </Button>
           </div>
         </div>
       </section>
@@ -144,58 +336,12 @@ const SportsSponsorship = () => {
       </section>
 
       {/* Curriculum */}
-      <section className="py-16 md:py-24">
+      <section id="curriculum" className="py-16 md:py-24">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="mb-12 text-center">Curriculum (16 Weeks)</h2>
             <Accordion type="single" collapsible className="space-y-4">
-              {[
-                {
-                  weeks: "Week 1-2",
-                  title: "Sponsorship Foundations",
-                  content: "Sports sponsorship ecosystem, brand objectives & strategies, KPI frameworks for measuring sponsorship success",
-                },
-                {
-                  weeks: "Week 3-4",
-                  title: "Athlete Sponsorships",
-                  content: "Individual athlete partnerships, contract structures, athlete branding, and workflow management",
-                },
-                {
-                  weeks: "Week 5-6",
-                  title: "Team & League Sponsorships",
-                  content: "Team partnerships, league-level deals, venue branding, and large-scale activations",
-                },
-                {
-                  weeks: "Week 7-8",
-                  title: "Digital & CSR Models",
-                  content: "OTT & digital sponsorships, CSR-linked partnerships, community activations, and social impact measurement",
-                },
-                {
-                  weeks: "Week 9-10",
-                  title: "Advanced Pitching",
-                  content: "Storytelling techniques, deck creation, tailoring pitches to different stakeholders",
-                },
-                {
-                  weeks: "Week 11-12",
-                  title: "Negotiation & Closing",
-                  content: "Budgeting & pricing strategies, ROI measurement tools, negotiation tactics, closing deals",
-                },
-                {
-                  weeks: "Week 13-14",
-                  title: "Internship Phase 1",
-                  content: "Onboarding at KIBI Sports, working on live sponsorship projects and deals",
-                },
-                {
-                  weeks: "Week 15",
-                  title: "Masterclass Week",
-                  content: "Special sessions with senior brand managers and league executives",
-                },
-                {
-                  weeks: "Week 16",
-                  title: "Capstone Presentation",
-                  content: "Present your sponsorship pitch deck to a panel - portfolio-ready deliverable",
-                },
-              ].map((module, index) => (
+              {modules.map((module, index) => (
                 <AccordionItem key={index} value={`item-${index}`} className="border rounded-xl px-6 shadow-soft">
                   <AccordionTrigger className="hover:no-underline">
                     <div className="flex items-center gap-4">
@@ -203,17 +349,85 @@ const SportsSponsorship = () => {
                         {index + 1}
                       </div>
                       <div className="text-left">
-                        <div className="text-sm text-primary font-semibold">{module.weeks}</div>
+                        <div className="text-sm text-primary font-semibold">{module.range}</div>
                         <div className="font-bold">{module.title}</div>
                       </div>
                     </div>
                   </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground pt-4 pb-2">
-                    {module.content}
+                  <AccordionContent className="pt-4 pb-2">
+                    <ul className="space-y-2">
+                      {module.bullets.map((bullet, bulletIndex) => (
+                        <li key={bulletIndex} className="flex items-start gap-2 text-muted-foreground">
+                          <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0"></div>
+                          <span className="text-sm">{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </AccordionContent>
                 </AccordionItem>
               ))}
             </Accordion>
+          </div>
+        </div>
+      </section>
+
+      {/* Internship */}
+      <section id="internship" className="py-16 md:py-24 bg-secondary/50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <Badge variant="secondary" className="mb-4">Paid Internship Included</Badge>
+              <h2 className="mb-4">2-Month Internship @ KIBI Sports</h2>
+              <p className="text-xl text-muted-foreground">₹10,000/month stipend + PPO eligibility</p>
+            </div>
+
+            <Card className="shadow-strong border-primary/20">
+              <CardContent className="p-8">
+                <div className="grid md:grid-cols-2 gap-8 items-center">
+                  <div>
+                    <h3 className="font-bold mb-4">What You'll Do</h3>
+                    <ul className="space-y-3">
+                      {[
+                        "Work on live sponsorship deals with real brands",
+                        "Assist in athlete/venue partnership negotiations",
+                        "Create sponsorship proposals and pitch decks",
+                        "Learn deal structuring and contract management",
+                        "Get exposure to brand activation strategies",
+                      ].map((item, index) => (
+                        <li key={index} className="flex items-start gap-2">
+                          <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+                          <span className="text-sm text-muted-foreground">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h3 className="font-bold mb-4">Timeline</h3>
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold">
+                          1
+                        </div>
+                        <div>
+                          <div className="font-semibold">Weeks 13-14</div>
+                          <div className="text-sm text-muted-foreground">Onboarding & Training</div>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold">
+                          2
+                        </div>
+                        <div>
+                          <div className="font-semibold">Weeks 15-16</div>
+                          <div className="text-sm text-muted-foreground">Live Projects & PPO Assessment</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
