@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent } from "@/components/ui/card";
-import { Mail, Linkedin, Instagram, Twitter } from "lucide-react";
+import { Mail, Linkedin, Instagram } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -72,10 +72,10 @@ const Contact = () => {
                         <div>
                           <div className="font-semibold mb-1">Email</div>
                           <a
-                            href="mailto:hello@khelpreneurs.com"
+                            href="mailto:Events@khelpreneurs.com"
                             className="text-sm text-muted-foreground hover:text-primary transition-fast"
                           >
-                            hello@khelpreneurs.com
+                            Events@khelpreneurs.com
                           </a>
                         </div>
                       </div>
@@ -86,7 +86,7 @@ const Contact = () => {
                     <h3 className="font-semibold mb-4">Follow Us</h3>
                     <div className="flex gap-3">
                       <a
-                        href="https://www.linkedin.com"
+                        href="https://www.linkedin.com/company/khelpreneurs/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="w-12 h-12 rounded-xl bg-secondary hover:bg-primary hover:text-primary-foreground flex items-center justify-center transition-fast"
@@ -94,20 +94,12 @@ const Contact = () => {
                         <Linkedin className="w-5 h-5" />
                       </a>
                       <a
-                        href="https://www.instagram.com"
+                        href="https://www.instagram.com/khelpreneurs/"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="w-12 h-12 rounded-xl bg-secondary hover:bg-primary hover:text-primary-foreground flex items-center justify-center transition-fast"
                       >
                         <Instagram className="w-5 h-5" />
-                      </a>
-                      <a
-                        href="https://twitter.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-12 h-12 rounded-xl bg-secondary hover:bg-primary hover:text-primary-foreground flex items-center justify-center transition-fast"
-                      >
-                        <Twitter className="w-5 h-5" />
                       </a>
                     </div>
                   </div>
