@@ -60,7 +60,7 @@ const Careers = () => {
                     <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-primary/10 text-primary mb-4">
                       {stat.icon}
                     </div>
-                    <div className="text-3xl font-bold gradient-primary bg-clip-text text-transparent mb-1">
+                    <div className="text-4xl md:text-2xl font-bold mb-2 text-white bg-primary-light/100 px-4 py-1 rounded-xl shadow-md">
                       {stat.value}
                     </div>
                     <div className="font-semibold mb-1">{stat.label}</div>
