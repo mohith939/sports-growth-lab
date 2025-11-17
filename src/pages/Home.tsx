@@ -15,7 +15,6 @@ import anjumImage from "@/assets/mentor-anjum.png";
 import karthikImage from "@/assets/mentor-karthik.png";
 import minalImage from "@/assets/mentor-minal.png";
 
-
 const Home = () => {
   return (
     <div className="min-h-screen">
